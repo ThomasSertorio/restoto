@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  resources :restaurants do
+    collection do
+      get 'top', to: "restaurants#top"
+    end
+    member do
+      get 'chef', to: "restaurants#chef"
+    end
+    resources :reviews, only: [:new, :create]
+  end
+
+  # resources :bookings do
+  #   member do
+  #     get 'confirmation', to: "bookings#booking"
+  #   end
+  # end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
